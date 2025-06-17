@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>قسم هندسة الحاسوب</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Cairo', sans-serif;
+      overflow: hidden;
+    }
+
+    /* شاشة التحميل */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #000000, #0d1a2d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 8px solid rgba(255, 255, 255, 0.1);
+      border-top: 8px solid #00bcd4;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* الشريط العلوي */
+    .header-bar {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #00bcd4;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      text-shadow: 0 0 10px #00bcd4;
+    }
+
+    /* المحتوى الرئيسي */
+    #mainContent {
+      display: none;
+      background: url('img/las.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100%;
+      padding-top: 80px; /* لتعويض الشريط */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .icon-box {
+      width: 620px;
+      height: 200px;
+      border: 2px solid #00bcd4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00bcd4;
+      background-color: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px #00bcd4;
+      transition: transform 0.3s ease;
+      animation: slideDown 1s ease forwards;
+      animation-delay: 3s;
+      opacity: 0;
+    }
+
+    .icon-box:hover {
+      transform: scale(1.05);
+    }
+
+    .desc-box {
+      background-color: rgba(0, 0, 0, 0.4);
+      border: 1px solid #00bcd4;
+      padding: 20px;
+      margin-top: 60px;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 0 10px #00bcd4;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 3.5s;
+      opacity: 0;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاشة التحميل -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- الشريط العلوي -->
+  <div class="header-bar">
+    قسم هندسة الحاسوب
+  </div>
+
+  <!-- المحتوى -->
+  <div id="mainContent">
+    <!-- أيقونة مستطيلة -->
+    <div class="icon-box" onclick="window.location.href='department.html'">
+      الصفحة الرئيسية
+    </div>
+
+    <!-- وصف القسم -->
+    <div class="desc-box">
+      قسم هندسة الحاسوب هو قلب الابتكار الرقمي، حيث تتلاقى البرمجة مع تصميم الأنظمة الذكية، لنصنع جيلاً يقود الثورة التكنولوجية بثقة واحتراف.
+    </div>
+  </div>
+
+  <script>
+    // إخفاء شاشة التحميل بعد 3 ثواني
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'flex';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

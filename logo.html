@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شاشة ترحيب</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: contain;
+      z-index: 0;
+    }
+
+    .stars {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 60s linear infinite;
+    }
+
+    .stars2 {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 120s linear infinite;
+      opacity: 0.3;
+    }
+
+    .stars3 {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 180s linear infinite;
+      opacity: 0.1;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
+
+    .center-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .screen {
+      background: #111;
+      border: 8px solid #4e4e4e;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 600px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 30px #00fff7, 0 0 60px #00fff7;
+    }
+
+    .welcome-text {
+      color: #00ffcc;
+      font-size: 2.5em;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out forwards;
+      text-shadow: 0 0 15px #00ffcc;
+    }
+
+    @keyframes fadeIn {
+      0%   { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .desk-area {
+      margin-top: 25px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .notebook {
+      width: 80px;
+      height: 60px;
+      background: linear-gradient(135deg, #e2c290, #d4af7f);
+      border: 2px solid #8b5e3c;
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .notebook::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 10px;
+      width: 60px;
+      height: 2px;
+      background: #654321;
+      box-shadow: 0 8px #654321, 0 16px #654321;
+    }
+
+    .keyboard {
+      width: 220px;
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+    }
+
+    .keyboard div {
+      height: 14px;
+      background: #444;
+      border-radius: 3px;
+      box-shadow: 0 0 2px #00ffcc;
+    }
+
+    .mouse {
+      width: 45px;
+      height: 65px;
+      background: linear-gradient(to bottom, #aaa, #555);
+      border-radius: 50% / 30%;
+      box-shadow: 0 0 15px #00fff7;
+      position: relative;
+      animation: moveMouse 3s ease-in-out infinite alternate;
+    }
+
+    .mouse::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 12px;
+      background: #111;
+      border-radius: 3px;
+    }
+
+    @keyframes moveMouse {
+      0%   { transform: translateY(0px); }
+      100% { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-text {
+        font-size: 2em;
+      }
+
+      .desk-area {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .screen {
+        width: 95%;
+        border-width: 5px;
+      }
+
+      .welcome-text {
+        font-size: 1.5em;
+      }
+
+      .keyboard {
+        grid-template-columns: repeat(8, 1fr);
+        width: 200px;
+      }
+
+      .desk-area {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
+  <script>
+    // انتقال تلقائي بعد 5 ثوانٍ
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 5000);
+  </script>
+</head>
+<body>
+
+  <!-- خلفية النجوم -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- محتوى الترحيب -->
+  <div class="center-container">
+    <div class="screen">
+      <div class="welcome-text">مرحبًا بكم</div>
+    </div>
+
+    <!-- المكتب -->
+    <div class="desk-area">
+      <!-- المذكرة يسار -->
+      <div class="notebook"></div>
+
+      <!-- الكيبورد وسط -->
+      <div class="keyboard">
+        <!-- 30 مفتاح -->
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- الماوس يمين -->
+      <div class="mouse"></div>
+    </div>
+  </div>
+
+</body>
+</html>

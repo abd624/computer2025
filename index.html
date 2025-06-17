@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم الحاسوب - جامعة الزاوية</title>
+    <style>
+        /* إعدادات الصفحة */
+        body {
+            font-family: "Cairo", sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+            /* خلفية متجاوبة */
+            background-image: url('img/ph.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* شاشة التحميل */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #000000, #0a054c);
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .center_div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+        }
+
+        .wave {
+            width: 1.8rem;
+            height: 150px;
+            background-color: #ff6b6b;
+            margin: 0 4px;
+            border-radius: 0.4rem;
+            animation: wave 1.5s linear infinite;
+            transform-origin: center;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            0% { transform: scale(0); filter: hue-rotate(90deg) blur(100px); }
+            25% { transform: scale(0); filter: hue-rotate(120deg) blur(50px); }
+            50% { transform: scale(1); filter: hue-rotate(180deg) blur(25px); }
+            75% { transform: scale(0); filter: hue-rotate(360deg) blur(2px); }
+            100% { transform: scale(0); filter: hue-rotate(0deg) blur(0); }
+        }
+
+        .wave:nth-child(2) { animation-delay: 0.1s; }
+        .wave:nth-child(3) { animation-delay: 0.2s; }
+        .wave:nth-child(4) { animation-delay: 0.3s; }
+        .wave:nth-child(5) { animation-delay: 0.4s; }
+        .wave:nth-child(6) { animation-delay: 0.5s; }
+        .wave:nth-child(7) { animation-delay: 0.6s; }
+        .wave:nth-child(8) { animation-delay: 0.7s; }
+        .wave:nth-child(9) { animation-delay: 0.8s; }
+        .wave:nth-child(10) { animation-delay: 0.9s; }
+
+        /* المحتوى بعد التحميل */
+        .content {
+            display: none;
+            background: linear-gradient(to bottom right, #080f5a, #000000);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 95%;
+            max-width: 1100px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* القسم الأيسر: الأزرار */
+        .options {
+            padding: 30px;
+            width: 100%;
+            max-width: 50%;
+            box-sizing: border-box;
+        }
+
+        .options h1 {
+            color: #ccc;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .btn {
+            display: block;
+            margin-bottom: 25px;
+            padding: 12px;
+            background-color: #4d4949;
+            color: rgb(176, 168, 168);
+            border: none;
+            border-radius: 50px;
+            width: 100%;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #030305;
+        }
+
+        /* القسم الأيمن: صورة القسم */
+        .logo-container {
+            width: 100%;
+            max-width: 50%;
+            background-color: #252428;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 18px;
+
+        }
+
+      
+            .department-image {
+            width: 100%;
+            max-width: 90%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* استجابة الشاشة الصغيرة (الهاتف) */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .options, .logo-container {
+                max-width: 100%;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .btn {
+                font-size: 18px;
+            }
+
+            .department-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="loader">
+        <div class="center_div">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="content">
+        <!-- الجزء الأول: خيارات -->
+        <div class="options">
+            <h1>قسم هندسة الحاسوب</h1>
+            <button class="btn" onclick="goToAbout()">نبذة عن قسم الحاسوب</button>
+            <button class="btn" onclick="goToDepartment()">الانتقال إلى صفحة قسم الحاسوب</button>
+        </div>
+
+        <!-- الجزء الثاني: صورة -->
+        <div class="logo-container">
+            <img src="img/lap.jpg" alt="شعار القسم" class="department-image">
+        </div>
+    </div>
+
+    <!-- جافا سكريبت -->
+    <script>
+        // إظهار المحتوى بعد 4 ثواني
+        setTimeout(() => {
+            document.querySelector(".loader").style.display = "none";
+            document.querySelector(".content").style.display = "flex";
+        }, 4000);
+
+        function goToAbout() {
+            window.location.href = "about.html";
+        }
+
+        function goToDepartment() {
+            window.location.href = "department.html";
+        }
+    </script>
+</body>
+</html>
