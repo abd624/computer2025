@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>قسم هندسة الحاسوب</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +14,11 @@
     body, html {
       height: 100%;
       font-family: 'Cairo', sans-serif;
+      background: url('img/ph.jpg') no-repeat center center fixed;
+      background-size: cover;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* شاشة التحميل */
@@ -48,75 +53,98 @@
       background-color: rgba(0, 0, 0, 0.6);
       color: #00bcd4;
       text-align: center;
-      padding: 15px;
-      font-size: 24px;
+      padding: 15px 10px;
+      font-size: 22px;
       font-weight: bold;
-      position: fixed;
-      top: 0;
-      z-index: 100;
       text-shadow: 0 0 10px #00bcd4;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeInText 2s ease forwards;
+      animation-delay: 2.5s;
     }
 
-    /* المحتوى الرئيسي */
+    /* المحتوى */
     #mainContent {
+      flex: 1;
       display: none;
-      background: url('img/las.jpg') no-repeat center center fixed;
-      background-size: cover;
-      height: 100%;
-      padding-top: 80px; /* لتعويض الشريط */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       text-align: center;
       color: white;
-      padding: 20px;
+      padding: 10px 20px;
     }
 
-    .icon-box {
-      width: 620px;
-      height: 200px;
+    /* جملة قسم هندسة الحاسوب */
+    .section-title {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: bold;
       border: 2px solid #00bcd4;
       border-radius: 10px;
+      color: #00bcd4;
+      text-shadow: 0 0 15px #00bcd4;
+      box-shadow: 0 0 20px #00bcd4;
+      opacity: 0;
+      animation: fadeInText 2s ease forwards;
+      animation-delay: 3.3s;
+    }
+
+    /* أيقونة الصفحة الرئيسية */
+    .icon-box {
+      width: 80%;
+      max-width: 500px;
+      height: 80px;
+      border: 2px solid #00bcd4;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       color: #00bcd4;
       background-color: rgba(255, 255, 255, 0.05);
       box-shadow: 0 0 20px #00bcd4;
       transition: transform 0.3s ease;
       animation: slideDown 1s ease forwards;
-      animation-delay: 3s;
+      animation-delay: 4.2s;
       opacity: 0;
+      margin-top: 25px;
     }
 
     .icon-box:hover {
       transform: scale(1.05);
     }
 
+    /* النبذة */
     .desc-box {
       background-color: rgba(0, 0, 0, 0.4);
       border: 1px solid #00bcd4;
       padding: 20px;
-      margin-top: 60px;
-      border-radius: 10px;
-      max-width: 500px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      font-size: 16px;
+      line-height: 2;
       box-shadow: 0 0 10px #00bcd4;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 3.5s;
       opacity: 0;
+      animation: fadeInText 2s ease forwards;
+      animation-delay: 4.7s;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideDown {
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
     }
   </style>
 </head>
@@ -129,20 +157,27 @@
 
   <!-- الشريط العلوي -->
   <div class="header-bar">
-    قسم هندسة الحاسوب
+    جامعة الزاوية - كلية الهندسة
   </div>
 
-  <!-- المحتوى -->
+  <!-- المحتوى الرئيسي -->
   <div id="mainContent">
-    <!-- أيقونة مستطيلة -->
+    
+    <!-- قسم هندسة الحاسوب -->
+    <div class="section-title">قسم هندسة الحاسوب</div>
+
+    <!-- الأيقونة -->
     <div class="icon-box" onclick="window.location.href='department.html'">
       الصفحة الرئيسية
     </div>
 
-    <!-- وصف القسم -->
+    <!-- النبذة -->
     <div class="desc-box">
-      قسم هندسة الحاسوب هو قلب الابتكار الرقمي، حيث تتلاقى البرمجة مع تصميم الأنظمة الذكية، لنصنع جيلاً يقود الثورة التكنولوجية بثقة واحتراف.
+      يُعد قسم هندسة الحاسوب منارة للمعرفة التقنية، حيث يلتقي الإبداع بالعلم لصناعة جيل من المهندسين القادرين على مواكبة الثورة الرقمية.  
+      يُعنى القسم بتدريس البرمجة، الذكاء الاصطناعي، أمن المعلومات، وهندسة النظم الذكية، مع حرص دائم على مواكبة التحديثات العالمية.  
+      نعمل على تنمية التفكير النقدي وروح الابتكار، لنُخرج خريجين يحملون مسؤولية بناء المستقبل الرقمي بكل اقتدار.
     </div>
+
   </div>
 
   <script>

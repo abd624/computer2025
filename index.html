@@ -1,222 +1,245 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قسم الحاسوب - جامعة الزاوية</title>
-    <style>
-        /* إعدادات الصفحة */
-        body {
-            font-family: "Cairo", sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شاشة ترحيب</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-            /* خلفية متجاوبة */
-            background-image: url('img/ph.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
 
-        /* شاشة التحميل */
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to bottom right, #000000, #0a054c);
-            position: absolute;
-            width: 100%;
-            z-index: 2;
-        }
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: contain;
+      z-index: 0;
+    }
 
-        .center_div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 5px;
-        }
+    .stars {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 60s linear infinite;
+    }
 
-        .wave {
-            width: 1.8rem;
-            height: 150px;
-            background-color: #ff6b6b;
-            margin: 0 4px;
-            border-radius: 0.4rem;
-            animation: wave 1.5s linear infinite;
-            transform-origin: center;
-            opacity: 0.9;
-        }
+    .stars2 {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 120s linear infinite;
+      opacity: 0.3;
+    }
 
-        @keyframes wave {
-            0% { transform: scale(0); filter: hue-rotate(90deg) blur(100px); }
-            25% { transform: scale(0); filter: hue-rotate(120deg) blur(50px); }
-            50% { transform: scale(1); filter: hue-rotate(180deg) blur(25px); }
-            75% { transform: scale(0); filter: hue-rotate(360deg) blur(2px); }
-            100% { transform: scale(0); filter: hue-rotate(0deg) blur(0); }
-        }
+    .stars3 {
+      background-image: url('https://i.imgur.com/1U7mGNT.png');
+      animation: moveStars 180s linear infinite;
+      opacity: 0.1;
+    }
 
-        .wave:nth-child(2) { animation-delay: 0.1s; }
-        .wave:nth-child(3) { animation-delay: 0.2s; }
-        .wave:nth-child(4) { animation-delay: 0.3s; }
-        .wave:nth-child(5) { animation-delay: 0.4s; }
-        .wave:nth-child(6) { animation-delay: 0.5s; }
-        .wave:nth-child(7) { animation-delay: 0.6s; }
-        .wave:nth-child(8) { animation-delay: 0.7s; }
-        .wave:nth-child(9) { animation-delay: 0.8s; }
-        .wave:nth-child(10) { animation-delay: 0.9s; }
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-1000px); }
+    }
 
-        /* المحتوى بعد التحميل */
-        .content {
-            display: none;
-            background: linear-gradient(to bottom right, #080f5a, #000000);
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 95%;
-            max-width: 1100px;
-            display: flex;
-            flex-wrap: wrap;
-            overflow: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    .center-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
 
-        /* القسم الأيسر: الأزرار */
-        .options {
-            padding: 30px;
-            width: 100%;
-            max-width: 50%;
-            box-sizing: border-box;
-        }
+    .screen {
+      background: #111;
+      border: 8px solid #4e4e4e;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 600px;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 30px #00fff7, 0 0 60px #00fff7;
+    }
 
-        .options h1 {
-            color: #ccc;
-            margin-bottom: 30px;
-            text-align: right;
-        }
+    .welcome-text {
+      color: #00ffcc;
+      font-size: 2.5em;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out forwards;
+      text-shadow: 0 0 15px #00ffcc;
+    }
 
-        .btn {
-            display: block;
-            margin-bottom: 25px;
-            padding: 12px;
-            background-color: #4d4949;
-            color: rgb(176, 168, 168);
-            border: none;
-            border-radius: 50px;
-            width: 100%;
-            font-size: 22px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    @keyframes fadeIn {
+      0%   { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-        .btn:hover {
-            background-color: #030305;
-        }
+    .desk-area {
+      margin-top: 25px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        /* القسم الأيمن: صورة القسم */
-        .logo-container {
-            width: 100%;
-            max-width: 50%;
-            background-color: #252428;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 18px;
+    .notebook {
+      width: 80px;
+      height: 60px;
+      background: linear-gradient(135deg, #e2c290, #d4af7f);
+      border: 2px solid #8b5e3c;
+      border-radius: 5px;
+      position: relative;
+      box-shadow: 0 0 10px #000;
+    }
 
-        }
+    .notebook::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 10px;
+      width: 60px;
+      height: 2px;
+      background: #654321;
+      box-shadow: 0 8px #654321, 0 16px #654321;
+    }
 
-      
-            .department-image {
-            width: 100%;
-            max-width: 90%;
-            height: auto;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
+    .keyboard {
+      width: 220px;
+      background: #222;
+      padding: 10px;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+    }
 
-        /* استجابة الشاشة الصغيرة (الهاتف) */
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
+    .keyboard div {
+      height: 14px;
+      background: #444;
+      border-radius: 3px;
+      box-shadow: 0 0 2px #00ffcc;
+    }
 
-            .options, .logo-container {
-                max-width: 100%;
-                width: 100%;
-                padding: 20px;
-            }
+    .mouse {
+      width: 45px;
+      height: 65px;
+      background: linear-gradient(to bottom, #aaa, #555);
+      border-radius: 50% / 30%;
+      box-shadow: 0 0 15px #00fff7;
+      position: relative;
+      animation: moveMouse 3s ease-in-out infinite alternate;
+    }
 
-            .btn {
-                font-size: 18px;
-            }
+    .mouse::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 12px;
+      background: #111;
+      border-radius: 3px;
+    }
 
-            .department-image {
-                max-width: 100%;
-            }
-        }
-    </style>
+    @keyframes moveMouse {
+      0%   { transform: translateY(0px); }
+      100% { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-text {
+        font-size: 2em;
+      }
+
+      .desk-area {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .screen {
+        width: 95%;
+        border-width: 5px;
+      }
+
+      .welcome-text {
+        font-size: 1.5em;
+      }
+
+      .keyboard {
+        grid-template-columns: repeat(8, 1fr);
+        width: 200px;
+      }
+
+      .desk-area {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+
+  <script>
+    // انتقال تلقائي بعد 5 ثوانٍ
+    setTimeout(() => {
+      window.location.href = "mawka.html";
+    }, 5000);
+  </script>
 </head>
 <body>
-    <!-- شاشة التحميل -->
-    <div class="loader">
-        <div class="center_div">
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-            <div class="wave"></div>
-        </div>
+
+  <!-- خلفية النجوم -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- محتوى الترحيب -->
+  <div class="center-container">
+    <div class="screen">
+      <div class="welcome-text">مرحبًا بكم</div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
-    <div class="content">
-        <!-- الجزء الأول: خيارات -->
-        <div class="options">
-            <h1>قسم هندسة الحاسوب</h1>
-            <button class="btn" onclick="goToAbout()">نبذة عن قسم الحاسوب</button>
-            <button class="btn" onclick="goToDepartment()">الانتقال إلى صفحة قسم الحاسوب</button>
-        </div>
+    <!-- المكتب -->
+    <div class="desk-area">
+      <!-- المذكرة يسار -->
+      <div class="notebook"></div>
 
-        <!-- الجزء الثاني: صورة -->
-        <div class="logo-container">
-            <img src="img/lap.jpg" alt="شعار القسم" class="department-image">
-        </div>
+      <!-- الكيبورد وسط -->
+      <div class="keyboard">
+        <!-- 30 مفتاح -->
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+      </div>
+
+      <!-- الماوس يمين -->
+      <div class="mouse"></div>
     </div>
+  </div>
 
-    <!-- جافا سكريبت -->
-    <script>
-        // إظهار المحتوى بعد 4 ثواني
-        setTimeout(() => {
-            document.querySelector(".loader").style.display = "none";
-            document.querySelector(".content").style.display = "flex";
-        }, 4000);
-
-        function goToAbout() {
-            window.location.href = "about.html";
-        }
-
-        function goToDepartment() {
-            window.location.href = "department.html";
-        }
-    </script>
 </body>
 </html>
